@@ -6,6 +6,8 @@ print("test")
 players = []
 dice = []
 
+# Push test
+
 
 def getOccurance(dice):
     occurance = [0, 0, 0, 0, 0, 0]
