@@ -4,18 +4,14 @@ import random
 print("test")
 
 players = []
-dice = []
-
-# Push test
+dice = [7, 7, 7, 7, 7, 7]
 
 
 def getOccurance(dice):
     occurance = [0, 0, 0, 0, 0, 0]
     for i in range(1, 6):
         for j in dice:
-            print(f"j: {j}")
-            if dice[j] == i:
-                occurance[i - 1] += 1
+            pass
     return occurance
 
 
@@ -89,6 +85,11 @@ dice = [1, 2, 3, 2, 5, 6]
 print(beregnPoeng(input(""), dice))
 
 
+def oppdaterTabell(player, score, category):
+    for i in player:
+        pass
+
+
 def lagTabell(n):
     kategorier = [
         "enere",
@@ -113,30 +114,17 @@ def lagTabell(n):
     return tabell
 
 
-def printTabell(tabell, players):
-    kategorier = list(tabell.keys())
-    bredder = [max(len("Kategori"), max(len(k) for k in kategorier))]
-    bredder += [max(len(p), 7) for p in players]
+class Scorecard:
+    def __init__(self, player, ones=0, toes=0, trees=0, fours=0):
+        self.player = player
+        self.ones = ones
+        self.toes = toes
+        self.trees = trees
+        self.forus = fours
 
-    def fmt(rad):
-        if len(rad) < len(bredder):
-            rad = rad + ["-"] * (len(bredder) - len(rad))
-        return " | ".join(str(c).ljust(b) for c, b in zip(rad, bredder))
 
-    header = ["Kategori"] + players
-    print(fmt(header))
-    print("-" * (sum(bredder) + 3 * (len(bredder) - 1)))
-
-    for kategori in kategorier:
-        rad = [kategori]
-        for felt in tabell[kategori]:
-            if isinstance(felt, list):
-                rad.append(" ".join(map(str, felt)))
-            elif felt is None:
-                rad.append("-")
-            else:
-                rad.append(str(felt))
-        print(fmt(rad))
+def printScorecard(player):
+    pass
 
 
 def roll(n):
@@ -167,6 +155,7 @@ def main():
             players.append(input("Skriv spillere"))
         else:
             break
+
     printTabell(lagTabell(3), players)
 
     input("Trykk enter for å trille!")
@@ -189,4 +178,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
     print("done")
