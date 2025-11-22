@@ -12,18 +12,28 @@ def trill(beholdte):
 
 def beregn(terninger, kategori):
     poeng = 0
+    n = 0
     match kategori:
         case "enere":
-            for i in terninger:
-                if i == 1:
-                    poeng += 1
-            return poeng
+            n = 1
         case "toere":
-            for i in terninger:
-                if i == 2:
-                    poeng += 2
-            return poeng
-    return 99
+            n = 2
+        case "treere":
+            n = 3
+        case "firere":
+            n = 4
+        case "femmere":
+            n = 5
+        case "seksere":
+            n = 6
+        case _:
+            pass
+        case "hus":
+
+    for i in terninger:
+        if i == n:
+            poeng += n
+    return poeng
 
 
 class Scorecard:
@@ -86,14 +96,16 @@ def tur(player: Scorecard):
     for kast in range(1, 4):
         terninger = trill(beholde)
         print("Trill:", terninger)
-        valg = input(f"Vil du avslutte nå og få {3-kast} prikker? ('ja'/'nei') ")
+        if kast < 3:
+            valg = input(f"Vil du avslutte nå og få {3-kast} prikker? ('ja'/'nei') ")
+        else:
+            valg = "ja"
         if valg.strip().lower() == "ja":
             kategori = input("Hva vil du sette terningene dine på? ")
             player.set_score(kategori, beregn(terninger, kategori))
             return kast
         sbeholde = input("Hvilke terninger vil du beholde? feks('5,5,6') ")
         beholde = [int(x.strip()) for x in sbeholde.split(",") if x.strip()]
-
     kategori = input("Hva vil du sette terningene dine på? ")
     player.set_score(kategori, beregn(terninger, kategori))
     return kategori
